@@ -10,3 +10,4 @@
 </ul>
 
 <%=link_to "Go back to Games", games_path%>
+<%=link_to "Delete this Game", game_path(@game), method: :delete, data: { confirm: "Really delete the game?" } %>
