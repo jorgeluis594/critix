@@ -1,0 +1,12 @@
+<h1><%=@game.name%></h1>
+
+<p><%=@game.summary%></p>
+
+<ul>
+  <li> Rating: <%=@game.rating%></li>
+  <li> Release Date: <%=@game.release_date%></li>
+  <li> Platform(s): <%=@game.platforms.map(&:name).join(", ")%></li>
+  <li> Genre(s): <%=@game.genres.map(&:name).join(", ")%></li>
+</ul>
+
+<%=link_to "Go back to Games", games_path%>
