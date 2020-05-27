@@ -3,9 +3,7 @@ require 'json'
 def create_genres_relationships(new_game, genres)
   return if genres == nil
   begin
-    genres.each do |genre|
-      new_game.genres << Genre.find_by(name: genre)
-    end
+    genres.each { |genre| new_game.genres << Genre.find_by(name: genre) }
   rescue
     p "Genre relationship not created for #{new_game}"
   end
@@ -14,9 +12,7 @@ end
 def create_platforms_relationships(new_game, platforms)
   return if platforms == nil
   begin
-    platforms.each do |platform|
-      new_game.platforms << Platform.find_by(name: platform["name"])
-    end
+    platforms.each { |platform| new_game.platforms << Platform.find_by(name: platform["name"]) }
   rescue
     p "Platform relationship not created for #{new_game}"
   end
@@ -37,73 +33,64 @@ def create_involved_companies_relationships(new_game, involved_companies)
   end
 end
 
+def create_game_relationships(new_game, game)
+  create_genres_relationships(new_game, game["genres"])
+  create_platforms_relationships(new_game, game["platforms"])
+  create_involved_companies_relationships(new_game, game["involved_companies"])
+end
+  
+
 puts "Start seeding data"
 
-companies_array = JSON.parse(File.read('db/companies.json'))
-platforms_array = JSON.parse(File.read('db/platforms.json'))
-genres_hash = JSON.parse(File.read('db/genres.json'))
-games_array = JSON.parse(File.read('db/games.json'))
+companies = JSON.parse(File.read('db/companies.json'))
+platforms = JSON.parse(File.read('db/platforms.json'))
+genres = JSON.parse(File.read('db/genres.json'))
+games = JSON.parse(File.read('db/games.json'))
 
 puts "Loading companies"
-companies_array.each do |company|
+companies.each do |company|
   new_company = Company.new(company)
-  p "#{company.to_s} not created" unless new_company.save
+  p "#{new_company} not created" unless new_company.save
 end
 
 puts "Loading platforms"
-platforms_array.each do |platform|
+platforms.each do |platform|
   new_platform = Platform.new(platform)
-  p "#{platform.to_s} not created" unless new_platform.save
+  p "#{new_platform} not created" unless new_platform.save
 end
 
 puts "Loading genres"
-genres_hash["genres"].each do |genre|
+genres["genres"].each do |genre|
   new_genre = Genre.new(name: genre)
-  p "#{genre.to_s} not created" unless new_genre.save
+  p "#{new_genre} not created" unless new_genre.save
 end
 
 puts "Loading main games and relations"
 
-main_games = games_array.select do |game|
-  game["parent"] == nil
-end
+main_games = games.select { |game| game["parent"] == nil }
 
 main_games.each do |game|
-  new_game = Game.new(  name: game["name"], 
-                        summary: game["summary"], 
-                        release_date: game["release_date"], 
-                        category: game["category"], 
-                        rating: game["rating"])
+  new_game = Game.new(game.slice("name", "summary", "release_date", "category", "rating"))
   if new_game.save
-    create_genres_relationships(new_game, game["genres"])
-    create_platforms_relationships(new_game, game["platforms"])
-    create_involved_companies_relationships(new_game, game["involved_companies"])
+    create_game_relationships(new_game, game)
   else
-    p "#{new_game.to_s} not created"
+    p "#{new_game} not created"
   end
 end
 
 puts "Loading expansion games and relations"
 
-expansion_games = games_array.select do |game|
-  game["parent"] != nil
-end
+expansion_games = games.select{ |game| game["parent"] != nil }
 
 expansion_games.each do |game|
-  parent = Game.find_by(name: game["parent"])
+  game_data = game.slice("name", "summary", "release_date", "category", "rating")
+  game_data["parent"] = Game.find_by(name: game["parent"])
+  new_game = Game.new(game_data)
 
-  new_game = Game.new(  name: game["name"], 
-                        summary: game["summary"], 
-                        release_date: game["release_date"], 
-                        category: game["category"], 
-                        rating: game["rating"],
-                        parent_id: parent.id )
   if new_game.save
-    create_genres_relationships(new_game, game["genres"])
-    create_platforms_relationships(new_game, game["platforms"])
-    create_involved_companies_relationships(new_game, game["involved_companies"])
+    create_game_relationships(new_game, game)
   else
-    p "#{new_game.to_s} not created"
+    p "#{new_game} not created"
   end
 end
 
