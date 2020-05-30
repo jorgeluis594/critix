@@ -70,7 +70,7 @@ puts "Loading main games and relations"
 main_games = games.select { |game| game["parent"] == nil }
 
 main_games.each do |game|
-  new_game = Game.new(game.slice("name", "summary", "release_date", "category", "rating"))
+  new_game = Game.new(game.slice("name", "summary", "release_date", "category", "rating", "cover"))
   if new_game.save
     create_game_relationships(new_game, game)
   else
@@ -83,7 +83,7 @@ puts "Loading expansion games and relations"
 expansion_games = games.select{ |game| game["parent"] != nil }
 
 expansion_games.each do |game|
-  game_data = game.slice("name", "summary", "release_date", "category", "rating")
+  game_data = game.slice("name", "summary", "release_date", "category", "rating","cover")
   game_data["parent"] = Game.find_by(name: game["parent"])
   new_game = Game.new(game_data)
 

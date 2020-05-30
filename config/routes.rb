@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  resources :games, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  devise_for :users
+  root "games#index"
+  resources :games
 end
