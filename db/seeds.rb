@@ -23,7 +23,7 @@ def create_involved_companies_relationships(new_game, involved_companies)
   begin
     involved_companies.each do |involved_company|
       company = Company.find_by(name: involved_company["name"])
-      InvolvedCompany.create( company: company, 
+      new_involved_company = InvolvedCompany.create!( company: company, 
                               game: new_game, 
                               developer: involved_company["developer"],
                               publisher: involved_company["publisher"] )

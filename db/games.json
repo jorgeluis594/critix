@@ -68,29 +68,6 @@
     ]
   },
   {
-    "name": "Sexy Beach 3",
-    "summary": "Sexy Beach 3 is the third game in the Sexy Beach franchise developed by Illusion Software.",
-    "cover": "hq3eh6p2iwdoqft9xp56",
-    "release_date": "2006-09-28",
-    "category": 0,
-    "rating": 82,
-    "parent": null,
-    "genres": ["Simulator", "Adventure"],
-    "platforms": [
-      {
-        "name": "PC (Microsoft Windows)",
-        "category": 4
-      }
-    ],
-    "involved_companies": [
-      {
-        "name": "Illusion",
-        "developer": true,
-        "publisher": true
-      }
-    ]
-  },
-  {
     "name": "Star Control: Origins",
     "summary": "The Earthlings have joined the interstellar club. The galaxy will never be the same.\n\nThe year is 2086 and Earth has detected an alien distress call originating from the surface of Triton. In response, Star Control is formed with you as The Captain of Earth's first prototype starship.",
     "cover": "rmzcpsfvnizymkhvd0qg",
@@ -114,29 +91,6 @@
     "involved_companies": [
       {
         "name": "Stardock",
-        "developer": true,
-        "publisher": true
-      }
-    ]
-  },
-  {
-    "name": "Artificial Girl 3",
-    "summary": "Artificial Girl 3 is an eroge (hentai game) and is the sequel to Artificial Girl 2.\n\nThe gameplay involves being a guy and living a life with one or many girls (whose various characteristics are set by the player).\n\nThe game is considered by the playerbase to be one of Illusion's finest games.",
-    "cover": "x4hz5yacdqanmggyting",
-    "release_date": "2007-11-29",
-    "category": 0,
-    "rating": 78,
-    "parent": null,
-    "genres": ["Simulator"],
-    "platforms": [
-      {
-        "name": "PC (Microsoft Windows)",
-        "category": 4
-      }
-    ],
-    "involved_companies": [
-      {
-        "name": "Illusion",
         "developer": true,
         "publisher": true
       }
