@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="cover">
+    <img
+      src="https://images.igdb.com/igdb/image/upload/t_cover_big/<%=game.cover%>.jpg"
+    />
+  </div>
+
+  <div class="card-info">
+    <p class="card-title"><%=game.name%></p>
+    <div class="card-details">
+      <p>Genres:</p>
+      <div class="tag-group">
+        <%game.genres.each do |genre|%>
+          <span class="tag"><%=genre.name%></span>
+        <%end%>
+      </div>
+    </div>
+    <div class="card-details">
+      <p>Platforms:</p>
+      <div class="tag-group">
+        <%game.platforms.each do |platform|%>
+          <span class="tag"><%=platform.name%></span>
+        <%end%>
+      </div>
+    </div>
+    <div class="card-details">
+      <p>Companies:</p>
+      <div class="tag-group">
+        <%game.companies.each do |company|%>
+          <span class="tag"><%=company.name%></span>
+        <%end%>
+      </div>
+    </div>
+  </div>
+  <div class="card-metrics">
+    <div class="rating">
+      <p class="metric"><%=game.rating ? game.rating : "NO"%></p>
+      <p class="metric-name">rating</p>
+    </div>
+    <div class="reviews">
+      <p class="metric"><%=game.reviews.size%></p>
+      <p class="metric-name">reviews</p>
+    </div>
+  </div>
+</div>

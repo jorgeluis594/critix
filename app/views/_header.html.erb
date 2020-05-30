@@ -1,0 +1,25 @@
+<header class="header">
+  <a href="/">
+    <%=image_tag("criticx.png", height: '70')%>
+  </a>
+  <nav class="nav">
+    <ul>
+      <li><%=link_to "Games", games_path%></li>
+      <li><%=link_to "Companies"%></li>
+      <li><%=link_to "Genres"%></li>
+      <li><%=link_to "Platforms"%></li>
+    </ul>
+  </nav>
+
+  <div class="nav session">
+    <ul>
+      <% if user_signed_in? %>
+      <li>Welcome, <%= current_user.username %></li>
+      <li><%=link_to "My Account"%></li>
+      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to "Log in", user_session_path %></li>
+    <% end %>
+    </ul>
+  </div>
+</header>

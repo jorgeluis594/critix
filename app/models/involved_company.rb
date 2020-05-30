@@ -4,5 +4,5 @@ class InvolvedCompany < ApplicationRecord
   belongs_to :game
 
   #Validations
-  validates :developer, :publisher, presence: true
+  validates :developer, :publisher, inclusion: {in: [true, false]}
 end
