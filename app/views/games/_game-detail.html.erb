@@ -1,0 +1,60 @@
+<div class="card card-detail">
+  <div class="cover">
+    <img
+      src=<%=game.cover%>
+    />
+  </div>
+
+  <div class="card-info">
+    <p class="card-title"><%=game.name%></p>
+    <div class="card-details">
+      <p>Release date: <%=game.release_date ? game.release_date.strftime("%B %e, %Y") : "To be defined"%></p>
+    </div>
+    <div class="card-details">
+      <p>Genres:</p>
+      <div class="tag-group">
+        <%game.genres.each do |genre|%>
+          <span class="tag"><%=genre.name%></span>
+        <%end%>
+      </div>
+    </div>
+    <div class="card-details">
+      <p>Platforms:</p>
+      <div class="tag-group">
+        <%game.platforms.each do |platform|%>
+          <span class="tag"><%=platform.name%></span>
+        <%end%>
+      </div>
+    </div>
+    <div class="card-details">
+      <p>Publisher Companies:</p>
+      <div class="tag-group">
+        <%game.companies.publisher.each do |company|%>
+          <span class="tag"><%=company.name%></span>
+        <%end%>
+      </div>
+    </div>
+    <div class="card-details">
+      <p>Developer Companies:</p>
+      <div class="tag-group">
+        <%game.companies.developer.each do |company|%>
+          <span class="tag"><%=company.name%></span>
+        <%end%>
+      </div>
+    </div>
+    <div class="summary">
+      <p class="summary-detail">Summary:</p>
+      <p class="summary-content"><%=game.summary%></p>
+    </div>
+    <div class="button-group">
+      <%=link_to "Edit this Game", edit_game_path(@game), class: "edit-game" %>
+      <%=link_to "Delete this Game", game_path(@game), method: :delete, class: "delete-game", data: { confirm: "Really delete the game?" } %>
+    </div>
+  </div>
+  <div class="card-metrics">
+    <div class="rating">
+      <p class="metric"><%=game.rating ? game.rating : "NO"%></p>
+      <p class="metric-name">rating</p>
+    </div>
+  </div>
+</div>

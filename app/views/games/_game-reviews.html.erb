@@ -1,0 +1,7 @@
+<%reviews.each do |review|%>
+  <div class="card review-card">
+    <h3 class="review-title"><%=review.title%></span></h3>
+    <p class="review-author">By <span><%=review.user.username%></span> on <%=review.created_at.strftime("%B %e, %Y")%></p>
+    <p class="review-body"><%=review.body%></p>
+  </div>
+<%end%>

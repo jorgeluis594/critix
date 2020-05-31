@@ -89,3 +89,80 @@
     background-color: #9e9e9e;
   }
 }
+
+.card-detail {
+  height: auto;
+
+  .cover {
+    width: 250px;
+  }
+  .card-metrics {
+    justify-content: flex-start;
+  }
+
+  .summary-detail {
+    margin: 10px 0 5px;
+  }
+  .summary-content {
+    line-height: 1.25em;
+  }
+}
+
+.button-group {
+  margin-top: 5px;
+  display: flex;
+
+  & > a {
+    margin-left: 5px;
+    font-size: 11px;
+    cursor: pointer;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    &:visited {
+      color: white;
+    }
+  }
+}
+.edit-game {
+  background-color: #2196f3;
+}
+.delete-game {
+  background-color: red;
+}
+
+.reviews-count {
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.game-reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.review-card {
+  flex-direction: column;
+  height: auto;
+  line-height: initial;
+  padding: 10px 20px;
+  width: 90%;
+
+  .review-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .review-author > span {
+    color: #022378;
+    font-weight: bold;
+  }
+  .review-body {
+    margin-top: 15px;
+    line-height: 1.25em;
+  }
+}
