@@ -1,0 +1,9 @@
+<%@genres.each do |genre|%>
+  <div class="group">
+    <h2 class="group-title"><%=genre.name%></h2>
+    <div class="games-group">
+        <%=render partial: "/games/game", collection: genre.games%>
+    </div>
+  </div>
+<%end%>
+

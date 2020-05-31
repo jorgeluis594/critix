@@ -1,5 +1,6 @@
-<h1>All the Games</h1>
- 
-<%# <% @games.each do |game| %>
-  <%=render partial: "game", collection: @games%>
-<%# <% end %>
+<div class="group">
+  <h2 class="group-title">All Games</h2>
+  <div class="games-group">
+      <%=render partial: "game", collection: @games%>
+  </div>
+</div>

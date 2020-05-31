@@ -1,0 +1,8 @@
+<%@companies.each do |company|%>
+  <div class="group">
+    <h2 class="group-title"><%=company.name%></h2>
+    <div class="games-group">
+        <%=render partial: "/games/game", collection: company.games%>
+    </div>
+  </div>
+<%end%>

@@ -1,8 +1,6 @@
 class GamesController < ApplicationController
   def index
-    games_with_rating = Game.all.where.not(rating: nil).order(rating: :desc)
-    games_without_rating = Game.all.where(rating: nil)
-    @games = games_with_rating + games_without_rating
+    @games = Game.all.order(:name)
   end
 
   def show

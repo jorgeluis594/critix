@@ -1,0 +1,8 @@
+<%@platforms.each do |platform|%>
+  <div class="group">
+    <h2 class="group-title"><%=platform.name%></h2>
+    <div class="games-group">
+        <%=render partial: "/games/game", collection: platform.games%>
+    </div>
+  </div>
+<%end%>
