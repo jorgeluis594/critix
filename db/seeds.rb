@@ -29,7 +29,7 @@ def create_involved_companies_relationships(new_game, involved_companies)
                               publisher: involved_company["publisher"] )
     end
   rescue
-    p "Involved company relationship not created for #{new_game}"
+    p "Involved company relationship not created for #{new_game.inspect}"
   end
 end
 
