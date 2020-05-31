@@ -2,13 +2,13 @@ class Game < ApplicationRecord
   enum category: { main_game: 0, expansion: 1 }
 
   #Associations
-  has_many :involved_companies
+  has_many :involved_companies, dependent: :destroy
   has_many :companies, through: :involved_companies
   has_and_belongs_to_many :platforms
   has_and_belongs_to_many :genres
   has_many :expansions, class_name: "Game", foreign_key: "parent_id"
   belongs_to :parent, class_name: "Game", optional: true
-  has_many :reviews, as: :reviewable
+  has_many :reviews, as: :reviewable, dependent: :destroy
 
   #Validations
   validates :name, :category, presence: true
