@@ -15,19 +15,19 @@
   </p>
   <p>
     <%= f.label :release_date %><br />
-    <%= f.text_field :release_date %>
+    <%= f.date_field :release_date %>
   </p>
   <p>
     <%= f.label :category %><br />
-    <%= f.text_field :category %>
+    <%= f.collection_select :category, Game.categories, :last, :first, prompt: true %>
   </p>
   <p>
     <%= f.label :rating %><br />
-    <%= f.text_field :rating %>
+    <%= f.number_field :rating %>
   </p>
   <p>
     <%= f.label :parent_id %><br />
-    <%= f.text_field :parent_id %>
+    <%= f.collection_select :parent_id, Game.all, :id, :name, prompt: true %>
   </p>
   <p>
     <%= f.submit %>
