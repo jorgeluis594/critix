@@ -14,7 +14,10 @@
       <p>Genres:</p>
       <div class="tag-group">
         <%game.genres.each do |genre|%>
-          <span class="tag"><%=genre.name%></span>
+          <span class="tag"><%=genre.name%> <span><%=link_to "X", game_genre_path(game, genre), method: :delete, data: { confirm: "Really delete the genre?" } %></span></span>
+        <%end%>
+        <%=link_to(new_game_genre_path(game), class: "tag new-resource") do%>
+          <span>+</span>
         <%end%>
       </div>
     </div>
