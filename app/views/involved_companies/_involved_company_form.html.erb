@@ -1,0 +1,23 @@
+<%= form_for([@game, @involved_company]) do |f| %>
+  <ul>
+  <% @involved_company.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+
+  <p>
+    <%= f.label :company_id %><br />
+    <%= f.collection_select :company_id, Company.all, :id, :name, prompt: true %>
+  </p>
+  <p>
+    <%= f.label :publisher %><br />
+    <%= f.check_box :publisher, {checked: params[:publisher].present?}, "true", "false" %>
+  </p>
+  <p>
+    <%= f.label :developer %><br />
+    <%= f.check_box :developer, {checked: params[:developer].present?}, "true", "false" %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

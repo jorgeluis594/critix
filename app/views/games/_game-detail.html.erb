@@ -36,7 +36,11 @@
       <p>Publisher Companies:</p>
       <div class="tag-group">
         <%game.companies.publisher.each do |company|%>
-          <span class="tag"><%=company.name%></span>
+          <%involved_company = game.involved_companies.find_by(company: company)%>
+          <span class="tag"><%=company.name%> <span><%=link_to "X", game_involved_company_path(game, involved_company), method: :delete, data: { confirm: "Really delete the company involved?" } %></span></span>
+        <%end%>
+        <%=link_to(new_game_involved_company_path(game, {publisher: true}), class: "tag new-resource") do%>
+          <span>+</span>
         <%end%>
       </div>
     </div>
@@ -44,7 +48,11 @@
       <p>Developer Companies:</p>
       <div class="tag-group">
         <%game.companies.developer.each do |company|%>
-          <span class="tag"><%=company.name%></span>
+          <%involved_company = game.involved_companies.find_by(company: company)%>
+          <span class="tag"><%=company.name%> <span><%=link_to "X", game_involved_company_path(game, involved_company), method: :delete, data: { confirm: "Really delete the company involved?" } %></span></span>
+        <%end%>
+        <%=link_to(new_game_involved_company_path(game, {developer: true}), class: "tag new-resource") do%>
+          <span>+</span>
         <%end%>
       </div>
     </div>
