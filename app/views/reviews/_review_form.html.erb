@@ -1,0 +1,12 @@
+<%= form_for([@game, @review]) do |f| %>
+  <ul>
+    <% @review.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  <div class="card review-card">
+    <%= f.text_field :title, {class: "review-title", placeholder: "Title"} %>
+    <%= f.text_area :body, {class: "review-body", placeholder: "Body"} %>
+    <%= f.submit "Review!", class: "edit-game review-button" %>
+  </div>
+<% end %>

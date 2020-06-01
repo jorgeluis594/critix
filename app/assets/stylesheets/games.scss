@@ -136,7 +136,7 @@
   background-color: red;
 }
 
-.reviews-count {
+.reviews-title {
   font-size: 28px;
   font-weight: bold;
   margin-top: 15px;
@@ -154,6 +154,7 @@
   line-height: initial;
   padding: 10px 20px;
   width: 90%;
+  margin: 5px auto;
 
   .review-title {
     font-size: 24px;
@@ -167,5 +168,6 @@
   .review-body {
     margin-top: 15px;
     line-height: 1.25em;
+    font-size: inherit;
   }
 }

@@ -1,6 +1,8 @@
 <%=render partial: "game-detail", locals: {game: @game}%>
 
-<h2 class="reviews-count"><%=@game.reviews.size%> Reviews:</h2>
+<p class="reviews-title">Create a new review!</p>
+<%=render partial: "/reviews/review_form"%>
+<h2 class="reviews-title"><%=@game.reviews.size%> Reviews:</h2>
 <div class="game-reviews">
-<%=render partial: "game-reviews", locals: {reviews: @game.reviews}%>
+  <%=render partial: "game-reviews", locals: {reviews: @game.reviews}%>
 </div>
