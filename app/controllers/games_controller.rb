@@ -24,6 +24,15 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 
+  def update
+    @game = Game.find(params[:id])
+    if @game.update(game_params)
+      redirect_to game_path(@game)
+    else
+      render :edit
+    end
+  end
+
   def destroy
     game = Game.find(params[:id])
     game.destroy
@@ -33,6 +42,6 @@ class GamesController < ApplicationController
   private
   
   def game_params
-    params.require(:game).permit(:name, :summary, :release_date, :category, :rating, :parent_id)
+    params.require(:game).permit(:name, :summary, :cover, :release_date, :category, :rating, :parent_id)
   end
 end
