@@ -25,7 +25,10 @@
       <p>Platforms:</p>
       <div class="tag-group">
         <%game.platforms.each do |platform|%>
-          <span class="tag"><%=platform.name%></span>
+          <span class="tag"><%=platform.name%> <span><%=link_to "X", game_platform_path(game, platform), method: :delete, data: { confirm: "Really delete the platform?" } %></span></span>
+        <%end%>
+        <%=link_to(new_game_platform_path(game), class: "tag new-resource") do%>
+          <span>+</span>
         <%end%>
       </div>
     </div>

@@ -1,0 +1,24 @@
+<%= form_for([@game, @platform]) do |f| %>
+  <ul>
+  <% @platform.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, list: "platforms" %>
+    <datalist id="platforms">
+      <%Platform.all.each do |platform|%>
+        <option value="<%=platform.name%>">
+      <%end%>
+    </datalist>
+  </p>
+  <p>
+    <%= f.label :category %><br />
+    <%= f.collection_select :category, Platform.categories, :first, :first, prompt: true %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
