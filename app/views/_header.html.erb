@@ -8,7 +8,7 @@
       <li><%=link_to "Companies", companies_path%></li>
       <li><%=link_to "Genres", genres_path%></li>
       <li><%=link_to "Platforms", platforms_path%></li>
-      <li><%=link_to "New Game", new_game_path%></li>
+      <li><%=link_to "New Game", new_game_path if user_signed_in?%></li>
     </ul>
   </nav>
 
@@ -16,7 +16,7 @@
     <ul>
       <% if user_signed_in? %>
       <li>Welcome, <%= current_user.username %></li>
-      <li><%=link_to "My Account"%></li>
+      <li><%=link_to "My Account", edit_user_registration_path%></li>
       <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
     <% else %>
       <li><%= link_to "Log in", user_session_path %></li>
