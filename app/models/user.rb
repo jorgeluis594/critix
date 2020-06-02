@@ -9,13 +9,13 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :external_logins, dependent: :destroy
   #Validations
-  validates :username, :email, presence: true, uniqueness: true
+  validates :username, :email, presence: true, uniqueness: true, if: :not_be_omniauth?
   validate :has_sixteen_years, unless: :blank_birth_date?
 
   def self.from_omniauth(auth)
     email = auth.info.email
     email = if email.nil?
-                   "#{auth.provider}@mail#{auth.uid}.com"
+                   "#{auth.uid}@mail#{auth.}.com"
                  else
                    email
                  end
@@ -23,7 +23,7 @@ class User < ApplicationRecord
       user.username = auth.info.name.downcase.gsub(/\s/,"") + rand(1..10000).to_s
       user.password = Devise.friendly_token[0, 20]
     end
-    user.external_logins.first_or_create(provider: auth.provider, uid: auth.uid)
+    user.external_logins.find_or_create_by(provider: auth.provider, uid: auth.uid)
     user
   end
 
@@ -37,5 +37,8 @@ class User < ApplicationRecord
 
   def blank_birth_date?
     self.birth_date.blank?
+  end
+  def not_be_omniauth?
+    self.
   end
 end
