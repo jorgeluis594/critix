@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   resources :companies, only: :index
   resources :genres, only: :index
   resources :platforms, only: :index
+  namespace :api do
+    resources :games, only: [:index, :show]
+  end
+
 end
