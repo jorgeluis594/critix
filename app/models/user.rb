@@ -9,13 +9,13 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :external_logins, dependent: :destroy
   #Validations
-  validates :username, :email, presence: true, uniqueness: true, if: :not_be_omniauth?
+  validates :username, :email, presence: true, uniqueness: true
   validate :has_sixteen_years, unless: :blank_birth_date?
 
   def self.from_omniauth(auth)
     email = auth.info.email
     email = if email.nil?
-                   "#{auth.uid}@mail#{auth.}.com"
+                   "#{auth.uid}@mail#{auth.provider}.com"
                  else
                    email
                  end
@@ -37,8 +37,5 @@ class User < ApplicationRecord
 
   def blank_birth_date?
     self.birth_date.blank?
-  end
-  def not_be_omniauth?
-    self.
   end
 end

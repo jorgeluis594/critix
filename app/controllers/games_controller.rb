@@ -16,6 +16,7 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
+    authorize @game
     if @game.save
       redirect_to game_path(@game)
     else
@@ -29,6 +30,7 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
+    authorize @game
     if @game.update(game_params)
       redirect_to game_path(@game)
     else
@@ -38,6 +40,7 @@ class GamesController < ApplicationController
 
   def destroy
     game = Game.find(params[:id])
+    authorize game
     game.destroy
     redirect_to games_path
   end
