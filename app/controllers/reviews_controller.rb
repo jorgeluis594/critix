@@ -24,6 +24,7 @@ class ReviewsController < ApplicationController
   def update
     @game = Game.find(params[:game_id])
     @review = Review.find(params[:id])
+    authorize @review
     if @review.update(review_params)
       redirect_to game_path(@game)
     else
@@ -34,6 +35,7 @@ class ReviewsController < ApplicationController
   def destroy
     @game = Game.find(params[:game_id])
     @review = @game.reviews.find(params[:id])
+    authorize @review
     @review.destroy
     redirect_to game_path(@game)
   end
