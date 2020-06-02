@@ -3,13 +3,30 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
+  devise :omniauthable, omniauth_providers: %i[facebook github google_oauth2 gitlab]
   #Associations
   has_many :reviews, dependent: :destroy
-
+  has_many :external_logins, dependent: :destroy
   #Validations
   validates :username, :email, presence: true, uniqueness: true
   validate :has_sixteen_years, unless: :blank_birth_date?
+
+  def self.from_omniauth(auth)
+    email = auth.info.email
+    email = if email.nil?
+                   "#{auth.provider}@mail#{auth.uid}.com"
+                 else
+                   email
+                 end
+    user = find_or_create_by(email: email) do |user|
+      user.username = auth.info.name.downcase.gsub(/\s/,"") + rand(1..10000).to_s
+      user.password = Devise.friendly_token[0, 20]
+    end
+    user.external_logins.first_or_create(provider: auth.provider, uid: auth.uid)
+    user
+  end
+
 
   private
   def has_sixteen_years
