@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :genres, only: :index
   resources :platforms, only: :index
   namespace :api do
-    resources :games, only: [:index, :show]
+    resources :games, only: [:index, :show, :create, :update, :destroy]
   end
 
 end

@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+require 'byebug'
 describe Api::GamesController do
   describe 'GET to index' do
     it 'returns http status ok' do
@@ -31,5 +31,53 @@ describe Api::GamesController do
     end
   end
 
+  describe 'Create game' do
+    it 'should be create' do
+      req_payload = {
+          game: {
+              name: "Name",
+              summary: "text",
+              category: :main_game,
+              rating: 80
+          }
+      }
+      post :create, params: req_payload
+      payload = JSON.parse(response.body)
+      expect(response).to have_http_status(:created)
+      expect(payload["id"]).not_to be_nil
+    end
+  end
+  describe 'Update Game' do
+   it 'should be update' do
+     game = Game.create(name: "primer titulo", summary: "un texto", category: :main_game, rating: 99)
+     req_payload = {
+         id: game.id,
+         game: {
+             name: "segundo titulo",
+             summary: "segundo text",
+             rating: 90
+         }
+     }
+     patch :update, params: req_payload
+     payload = JSON.parse(response.body)
+     expect(response).to have_http_status(:ok)
+     expect(payload).not_to be_empty
+     expect(payload["id"]).to eq(game.id)
+   end
+  end
 
+  describe 'Delete Game' do
+    it 'should be delete' do
+      game = Game.create(name: "game a crear", summary: "un texto", category: :main_game, rating: 99)
+      games_before = Game.all.size
+      delete :destroy, params: {id: game}
+      game_exists = Game.exists?(game.id)
+      games_after = Game.all.size
+      payload = JSON.parse(response.body)
+      expect(response).to have_http_status(:no_content)
+      expect(payload).to be_empty
+      expect(games_after).to eq(games_before - 1)
+      expect(game_exists).to be_falsey
+    end
+  end
 end
