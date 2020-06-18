@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   resources :genres, only: :index
   resources :platforms, only: :index
   namespace :api do
+    devise_scope :user do
+      post "sign_up", to: "registrations#create"
+      post "sign_in", to: "sessions#create"
+      delete "sign_out", to: "sessions#destroy"
+    end
     resources :games, only: [:index, :show, :create, :update, :destroy]
   end
 
