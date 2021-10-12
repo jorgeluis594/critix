@@ -153,7 +153,7 @@ GEM
     multi_json (1.14.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    nio4r (2.5.2)
+    nio4r (2.5.8)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     oauth2 (1.4.4)
@@ -182,7 +182,7 @@ GEM
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
     pg (1.2.3)
-    puma (4.3.5)
+    puma (4.3.9)
       nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
@@ -288,7 +288,7 @@ DEPENDENCIES
   omniauth-gitlab
   omniauth-google-oauth2
   pg (>= 0.18, < 2.0)
-  puma (~> 4.1)
+  puma (~> 4.3)
   pundit
   rails (~> 6.0.3, >= 6.0.3.1)
   rspec-core!
